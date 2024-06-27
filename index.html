@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,12 +7,69 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.indigo.min.css"
     />
+    <link rel="stylesheet" href="./style.css" />
     <title>Aayush's Micros</title>
+
+    <meta
+      name="description"
+      content="I bulid Machine Learning products and Games. I write about tech, how it influences your life and thoughts."
+    />
   </head>
   <body>
     <main class="container">
-      <h1>micros</h1>
-      <div id="posts"></div>
+      <header>
+        <nav>
+          <ul>
+            <li><strong>Aayush Chaudhary</strong></li>
+          </ul>
+          <ul>
+            <li><a href="/">About</a></li>
+            <li><a href="/blog">Blog</a></li>
+            <li><a href="/portfolio">Portfolio</a></li>
+            <li><a href="/ml-progress">Machine Learning</a></li>
+          </ul>
+        </nav>
+      </header>
+      <div>
+        <h2>Latest Posts:</h2>
+        <p aria-busy="true">full blogs coming soon!</p>
+      </div>
+      <hr />
+      <div class="microblog">
+        <details open>
+          <summary role="button" class="outline">micros</summary>
+          <div id="posts" aria-busy="true"></div>
+        </details>
+      </div>
+      <footer>
+        <hr />
+        <nav>
+          <ul>
+            <li>
+              <a target="_blank" href="mailto:aaayush.dev@gmial.com">Email</a>
+            </li>
+            <li>
+              <a target="_blank" href="https://wa.me/+7038991900">Whatsapp</a>
+            </li>
+
+            <li>
+              <a
+                target="_blank"
+                href="https://in.linkedin.com/in/aayush-chaudhary-2b7b99208"
+                >LinkedIn</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://youtube.com/c/AayushChaudharyGames"
+                target="_blank"
+                >YouTube</a
+              >
+            </li>
+          </ul>
+        </nav>
+        <p>Copyright @ Aayush Chaudhary 2024</p>
+      </footer>
     </main>
   </body>
 
@@ -23,14 +80,13 @@
       .then((response) => response.json())
       .then((posts) => {
         const postsContainer = document.getElementById("posts");
+        postsContainer.ariaBusy = false;
+
         posts.forEach((post) => {
           const article = document.createElement("article");
           article.innerHTML = `
-                    <hgroup>
-                    <h4>${post.title}</h4>
-                    <h6>${post.date}</h6>
-                    </hgroup>
                     ${converter.makeHtml(post.content)}
+                    <p style="opacity: 0.4">${post.date}</p>
                 `;
           postsContainer.appendChild(article);
         });

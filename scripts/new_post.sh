@@ -3,10 +3,6 @@
 # Get the current date and time
 DATE=$(date "+%d-%m-%Y %H:%M")
 
-
-echo "Post title: "
-POST_TITLE=$(cat)
-
 # Prompt for the post content
 echo "Enter your post content (press Ctrl+D when finished):"
 POST_CONTENT=$(cat)
@@ -26,7 +22,7 @@ POSTS=${POSTS#[}
 POSTS=${POSTS%]}
 
 # Add the new post to the beginning of the array
-NEW_POSTS="[{\"title\":\"$POST_TITLE\",\"date\":\"$DATE\",\"content\":\"$ESCAPED_CONTENT\"}${POSTS:+,$POSTS}]"
+NEW_POSTS="[{\"date\":\"$DATE\",\"content\":\"$ESCAPED_CONTENT\"}${POSTS:+,$POSTS}]"
 
 # Write the updated posts back to the file
 echo "$NEW_POSTS" > "$POSTS_FILE"
