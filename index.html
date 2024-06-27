@@ -18,17 +18,20 @@
 
   <script src="https://unpkg.com/showdown/dist/showdown.min.js"></script>
   <script>
-    const converter = new showdown.converter();
+    const converter = new showdown.Converter();
     fetch("posts/posts.json")
-      .then((respone) => respone.json())
+      .then((response) => response.json())
       .then((posts) => {
         const postsContainer = document.getElementById("posts");
         posts.forEach((post) => {
           const article = document.createElement("article");
           article.innerHTML = `
-            <h2>${post.date}</h2>
-            ${convert.makeHtml(post.content)}
-            `;
+                    <hgroup>
+                    <h4>${post.title}</h4>
+                    <h6>${post.date}</h6>
+                    </hgroup>
+                    ${converter.makeHtml(post.content)}
+                `;
           postsContainer.appendChild(article);
         });
       });
