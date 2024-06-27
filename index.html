@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.indigo.min.css"
+    />
+    <title>Aayush's Micros</title>
+  </head>
+  <body>
+    <main class="container">
+      <h1>micros</h1>
+      <div id="posts"></div>
+    </main>
+  </body>
+
+  <script src="https://unpkg.com/showdown/dist/showdown.min.js"></script>
+  <script>
+    const converter = new showdown.converter();
+    fetch("posts/posts.json")
+      .then((respone) => respone.json())
+      .then((posts) => {
+        const postsContainer = document.getElementById("posts");
+        posts.forEach((post) => {
+          const article = document.createElement("article");
+          article.innerHTML = `
+            <h2>${post.date}</h2>
+            ${convert.makeHtml(post.content)}
+            `;
+          postsContainer.appendChild(article);
+        });
+      });
+  </script>
+</html>
